@@ -2,40 +2,44 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Эмблема Огня: Кодекс</title>
-<meta name="description" content="Гайды по механикам Fire Emblem с формулами, симулятор боя, базы героев, игр, оружия и навыков.">
+<meta name="description" content="Гайды по механикам Fire Emblem с формулами, симулятор боя, базы героев, игр, оружия, предметов и навыков.">
+<meta name="theme-color" content="#171d38">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 2 L28 9 V23 L16 30 L4 23 V9 Z' fill='%23c9a14a'/><path d='M16 8 L20 16 L16 24 L12 16 Z' fill='%231a2140'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <script>try{var t=localStorage.getItem('fe-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
 <body>
 <header class="top">
   <div class="top-in">
-    <a href="#/" class="brand"><span class="crest">◆</span><span>Кодекс <b>Fire Emblem</b></span></a>
-    <nav id="nav">
+    <a href="#/" class="brand"><svg class="crest" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 L28 9 V23 L16 30 L4 23 V9 Z" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--gold-2)"/><path d="M16 8 L20 16 L16 24 L12 16 Z" fill="var(--gold-2)"/></svg><span>Кодекс <b>Fire Emblem</b></span></a>
+    <nav id="nav" aria-label="Разделы">
       <a href="#/mechanics">Механики</a>
       <a href="#/sim">Симулятор</a>
       <a href="#/heroes">Герои</a>
       <a href="#/games">Игры</a>
       <a href="#/weapons">Оружие</a>
+      <a href="#/items">Предметы</a>
       <a href="#/skills">Навыки</a>
       <a href="#/arts">Арты</a>
       <a href="#/tools">Инструменты</a>
     </nav>
-    <button id="themeBtn" class="icon-btn" title="Сменить тему" aria-label="Сменить тему">◐</button>
+    <button id="themeBtn" class="icon-btn" title="Сменить тему" aria-label="Сменить тему"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
   </div>
 </header>
 <main id="app"></main>
 <footer class="foot">
-  <p>Фан-сайт. Fire Emblem — торговая марка Nintendo / Intelligent Systems. Формулы и числа собраны по открытым данным сообщества и могут незначительно отличаться между версиями игр.</p>
+  <div class="brand-mini">◆ Кодекс Fire Emblem ◆</div>
+  <p>Фан-сайт. Fire Emblem — торговая марка Nintendo / Intelligent Systems. Формулы и характеристики сверены с Serenes Forest и Fire Emblem Wiki (октябрь 2026); статы героев в симуляторе — ориентировочные.</p>
 </footer>
 <script src="assets/data/skills.js"></script>
 <script src="assets/data/arts.js"></script>
 <script src="assets/data/weapons.js"></script>
+<script src="assets/data/items.js"></script>
 <script src="assets/data/games.js"></script>
 <script src="assets/data/heroes.js"></script>
 <script src="assets/data/mechanics.js"></script>

@@ -1,0 +1,108 @@
+/* База предметов: легендарное оружие, щиты, кольца и аксессуары, усилители, повышение, расходники.
+   Сверено с Serenes Forest (FE7, FE13) и Fire Emblem Wiki (FE16, FE17), окт. 2026.
+   eq — эффект при экипировке в симуляторе (wt — вес, складывается с оружием; prt/rsl — к Def/Res). */
+window.FE_ITEM_CATS = {
+  legend: { n: 'Легендарное оружие', icon: '⚜️', d: 'Личное и реликтовое оружие героев. Обычно мощнее серебряного, часто даёт бонус к характеристике.' },
+  shield: { n: 'Щиты', icon: '🛡️', d: 'В Three Houses щиты — экипировка: дают защиту, но добавляют вес (снижают AS). В других частях — пассивные предметы инвентаря.' },
+  ring: { n: 'Кольца и аксессуары', icon: '💍', d: 'Экипируемые бонусы к статам и особые эффекты.' },
+  booster: { n: 'Усилители статов', icon: '💎', d: 'Навсегда повышают характеристику. Дорогие и редкие — решайте, кому отдать.' },
+  promo: { n: 'Повышение класса', icon: '🎖️', d: 'Предметы, позволяющие повысить или сменить класс.' },
+  consumable: { n: 'Расходники и прочее', icon: '🧪', d: 'Лечение, ключи, временные бафы.' },
+};
+
+window.FE_ITEMS = [
+  // ---------- Легендарное оружие ----------
+  { id: 'durandal', cat: 'legend', game: 'FE7', name: 'Durandal', type: 'sword', stats: 'Mt 17 · Hit 90 · Wt 16', desc: 'Священный меч Элиуда. Str +5, эффективен против драконов. Тяжёлый — Con Элиуда не покрывает вес.' },
+  { id: 'solkatti', cat: 'legend', game: 'FE7', name: 'Sol Katti', type: 'sword', stats: 'Mt 12 · Hit 95 · Crit 25 · Wt 14', desc: 'Клинок Лин. Res +5, эффективен против драконов.' },
+  { id: 'armads', cat: 'legend', game: 'FE7', name: 'Armads', type: 'axe', stats: 'Mt 18 · Hit 85 · Wt 18', desc: 'Топор Гектора. Def +5, эффективен против драконов.' },
+  { id: 'manikatti', cat: 'legend', game: 'FE7', name: 'Mani Katti', type: 'sword', stats: 'Mt 8 · Hit 80 · Crit 20 · Wt 3', desc: 'Стартовый меч Лин. Эффективен против брони и всадников.' },
+  { id: 'aureola', cat: 'legend', game: 'FE7', name: 'Aureola', type: 'light', stats: 'Mt 15 · Hit 90 · Crit 5 · Wt 14', desc: 'Книга света. Res +5, эффективна против драконов.' },
+  { id: 'forblaze', cat: 'legend', game: 'FE7', name: 'Forblaze', type: 'anima', stats: 'Mt 14 · Hit 85 · Crit 5 · Wt 11', desc: 'Огненная книга. Lck +5, эффективна против драконов.' },
+  { id: 'regal', cat: 'legend', game: 'FE7', name: 'Regal Blade', type: 'sword', stats: 'Mt 20 · Hit 85 · Wt 9', desc: 'Самый сильный обычный меч FE7. Без ограничения по персонажу.' },
+  { id: 'exfalchion', cat: 'legend', game: 'FE13', name: 'Exalted Falchion', type: 'sword', stats: 'Mt 15 · Hit 80 · Crit 10', desc: 'Улучшенный Фальшион. Эффективен против драконов.' },
+  { id: 'ragnell13', cat: 'legend', game: 'FE13', name: 'Ragnell', type: 'sword', stats: 'Mt 15 · Hit 70 · Rng 1–2', desc: 'Меч Айка в Awakening. Бьёт на дистанции.' },
+  { id: 'gradivus', cat: 'legend', game: 'FE13', name: 'Gradivus', type: 'lance', stats: 'Mt 19 · Hit 85 · Crit 5 · Rng 1–2', desc: 'Легендарное копьё. Можно использовать для полного лечения.' },
+  { id: 'parthia13', cat: 'legend', game: 'FE13', name: 'Parthia', type: 'bow', stats: 'Mt 19 · Hit 95 · Crit 5', desc: 'Лук. Можно использовать, чтобы временно получить Res +5.' },
+  { id: 'mjolnir', cat: 'legend', game: 'FE13', name: 'Mjolnir', type: 'tome', stats: 'Mt 18 · Hit 70 · Crit 20', desc: 'Громовая книга. Skl +5.' },
+  { id: 'raijinto', cat: 'legend', game: 'FE14', name: 'Raijinto', type: 'sword', stats: 'Mt 11 · Hit 80 · Crit 5 · Rng 1–2', desc: 'Катана Рёмы. Str +4, пока в инвентаре; Avo +10.' },
+  { id: 'fujin', cat: 'legend', game: 'FE14', name: 'Fujin Yumi', type: 'bow', stats: 'Mt 14 · Hit 70 · Crit 5', desc: 'Лук Такуми. Любая местность стоит 1 очко движения.' },
+  { id: 'yato', cat: 'legend', game: 'FE14', name: 'Yato', type: 'sword', stats: 'Mt 8 · Hit 85 → до Mt 16', desc: 'Меч аватара. Эволюционирует по сюжету в разные формы для каждой версии игры.' },
+  { id: 'creator', cat: 'legend', game: 'FE16', name: 'Sword of the Creator', type: 'sword', stats: 'Mt 7 · Hit 90 · Wt 9 · Rng 1–2', desc: 'Оружие Байлета. Даёт арт Ruptured Heaven. Нельзя продать.' },
+  { id: 'areadbhar', cat: 'legend', game: 'FE16', name: 'Areadbhar', type: 'lance', stats: 'Mt 19 · Hit 75 · Crit 10 · Wt 9', desc: 'Реликвия Синих Львов. С Гербом Блайддида — арт Atrocity. Без герба — 10 урона после боя.' },
+  { id: 'failnaught', cat: 'legend', game: 'FE16', name: 'Failnaught', type: 'bow', stats: 'Mt 18 · Hit 75 · Crit 20 · Wt 9 · Rng 2–3', desc: 'Реликвия Золотых Оленей. С Гербом Ригана — арт Fallen Star.' },
+  { id: 'aymr', cat: 'legend', game: 'FE16', name: 'Aymr', type: 'axe', stats: 'Mt 24 · Hit 60 · Crit 20 · Wt 11', desc: 'Реликвия Чёрных Орлов. Арт Raging Storm.' },
+  { id: 'thunderbrand', cat: 'legend', game: 'FE16', name: 'Thunderbrand', type: 'sword', stats: 'Mt 13 · Hit 70 · Crit 10 · Wt 7', desc: 'Реликвия с Гербом Харона. Арт Foudroyant Strike.' },
+  { id: 'luin', cat: 'legend', game: 'FE16', name: 'Lúin', type: 'lance', stats: 'Mt 17 · Hit 90 · Crit 10 · Wt 9', desc: 'Реликвия с Гербом Дафнель. Арт Burning Quake.' },
+  { id: 'freikugel', cat: 'legend', game: 'FE16', name: 'Freikugel', type: 'axe', stats: 'Mt 23 · Hit 65 · Crit 10 · Wt 11', desc: 'Реликвия с Гербом Гонерил. Арт Apocalyptic Flame.' },
+  { id: 'vajra', cat: 'legend', game: 'FE16', name: 'Vajra-Mushti', type: 'gauntlet', stats: 'Mt 7 · Hit 90 · Crit 10 · Wt 7', desc: 'Кастеты-реликвия. Двойной удар при атаке, арт Eviscerate.' },
+  { id: 'blutgang', cat: 'legend', game: 'FE16', name: 'Blutgang', type: 'sword', stats: 'Mt 13 · Hit 80 · Wt 7', desc: 'Магический меч-реликвия (бьёт по Res). Арт Beast Fang.' },
+  { id: 'lanceofruin', cat: 'legend', game: 'FE16', name: 'Lance of Ruin', type: 'lance', stats: 'Mt 22 · Hit 65 · Crit 20 · Wt 9', desc: 'Реликвия с Гербом Готье. Арт Ruined Sky.' },
+  { id: 'seiros', cat: 'legend', game: 'FE16', name: 'Sword of Seiros', type: 'sword', stats: 'Mt 11 · Hit 80 · Crit 10 · Wt 6', desc: 'Лечит на половину урона, восстанавливает HP каждый ход с Гербом Сейрос.' },
+  { id: 'liberation', cat: 'legend', game: 'FE17', name: 'Liberation', type: 'sword', stats: 'Mt 6 · Hit 90 · Wt 4', desc: 'Меч Алеар. Убийство заполняет шкалу Engage на 1 деление.' },
+  { id: 'ragnell17', cat: 'legend', game: 'FE17', name: 'Ragnell', type: 'sword', stats: 'Mt 16 · Hit 80 · Crit 5 · Wt 15 · Rng 1–2', desc: 'Engage-оружие Эмблемы Айка. Def +5 при экипировке.' },
+  { id: 'mercurius', cat: 'legend', game: 'FE17', name: 'Mercurius', type: 'sword', stats: 'Mt 12 · Hit 80 · Wt 7', desc: 'Engage-оружие Эмблемы Марта. Удваивает получаемый опыт.' },
+  { id: 'parthia17', cat: 'legend', game: 'FE17', name: 'Parthia', type: 'bow', stats: 'Mt 17 · Hit 95 · Crit 5 · Wt 14', desc: 'Engage-оружие Эмблемы Люсины. Res +5, опыт ×2.' },
+
+  // ---------- Щиты ----------
+  { id: 'leathershield', cat: 'shield', game: 'FE16', name: 'Leather Shield', stats: 'Prt +1 · Wt 1', desc: 'Самый лёгкий щит.', eq: { prt: 1, wt: 1 } },
+  { id: 'ironshield', cat: 'shield', game: 'FE16', name: 'Iron Shield', stats: 'Prt +2 · Wt 2', desc: 'Базовый щит.', eq: { prt: 2, wt: 2 } },
+  { id: 'steelshield', cat: 'shield', game: 'FE16', name: 'Steel Shield', stats: 'Prt +3 · Wt 3', desc: 'Защита +3, но заметно замедляет слабых юнитов.', eq: { prt: 3, wt: 3 } },
+  { id: 'silvershield', cat: 'shield', game: 'FE16', name: 'Silver Shield', stats: 'Prt +4 · Wt 4', desc: 'Лучший обычный физический щит.', eq: { prt: 4, wt: 4 } },
+  { id: 'talismanshield', cat: 'shield', game: 'FE16', name: 'Talisman Shield', stats: 'Prt +1 · Rsl +2 · Wt 4', desc: 'Защищает от магии.', eq: { prt: 1, rsl: 2, wt: 4 } },
+  { id: 'hexlockshield', cat: 'shield', game: 'FE16', name: 'Hexlock Shield', stats: 'Prt +2 · Rsl +4 · Wt 5', desc: 'Сильная защита от магии.', eq: { prt: 2, rsl: 4, wt: 5 } },
+  { id: 'aegisshield', cat: 'shield', game: 'FE16', name: 'Aegis Shield', stats: 'Prt +6 · Rsl +3 · Wt 6', desc: 'Реликвия. С Гербом Фралдариуса даёт Pavise и Aegis. Без герба — 10 урона после боя.', eq: { prt: 6, rsl: 3, wt: 6 } },
+  { id: 'ochain', cat: 'shield', game: 'FE16', name: 'Ochain Shield', stats: 'Prt +6 · Wt 4', desc: 'Реликвия. Блокирует критические удары врага, лечит каждый ход.', eq: { prt: 6, wt: 4 } },
+  { id: 'seirosshield', cat: 'shield', game: 'FE16', name: 'Seiros Shield', stats: 'Prt +5 · Wt 3', desc: 'Делит пополам урон от монстров, лечит каждый ход.', eq: { prt: 5, wt: 3 } },
+  { id: 'aurorashield', cat: 'shield', game: 'FE16', name: 'Aurora Shield', stats: 'Prt +3 · Wt 0', desc: 'Защищает летуна от эффективного урона.', eq: { prt: 3, wt: 0 } },
+  { id: 'kadmosshield', cat: 'shield', game: 'FE16', name: 'Kadmos Shield', stats: 'Prt +3 · Wt 0', desc: 'Защищает броню от эффективного урона.', eq: { prt: 3, wt: 0 } },
+  { id: 'lamposshield', cat: 'shield', game: 'FE16', name: 'Lampos Shield', stats: 'Prt +3 · Wt 0', desc: 'Защищает всадника от эффективного урона.', eq: { prt: 3, wt: 0 } },
+  { id: 'delphi', cat: 'shield', game: 'FE7', name: 'Delphi Shield', stats: 'Пассивный', desc: 'В инвентаре: отменяет эффективность против летунов. Стоит 10 000 золота.' },
+  { id: 'ironrune', cat: 'shield', game: 'FE7', name: 'Iron Rune', stats: 'Пассивный', desc: 'В инвентаре: враг не может нанести критический удар.' },
+
+  // ---------- Кольца ----------
+  { id: 'accring', cat: 'ring', game: 'FE16', name: 'Accuracy Ring', stats: 'Hit +10', desc: 'Экипируемое кольцо.', eq: { hit: 10 } },
+  { id: 'critring', cat: 'ring', game: 'FE16', name: 'Critical Ring', stats: 'Crit +5', desc: 'Экипируемое кольцо.', eq: { crit: 5 } },
+  { id: 'evaring', cat: 'ring', game: 'FE16', name: 'Evasion Ring', stats: 'Avo +10', desc: 'Экипируемое кольцо.', eq: { avo: 10 } },
+  { id: 'speedring', cat: 'ring', game: 'FE16', name: 'Speed Ring', stats: 'Spd +2', desc: 'Помогает дотянуть до удвоения.', eq: { spd: 2 } },
+  { id: 'marchring', cat: 'ring', game: 'FE16', name: 'March Ring', stats: 'Mov +1', desc: 'Экипируемое кольцо.' },
+  { id: 'goddessring', cat: 'ring', game: 'FE16', name: 'Goddess Ring', stats: 'Lck +4 · реген 10%', desc: 'Удача и восстановление HP в начале фазы.', eq: { lck: 4 } },
+  { id: 'prayerring', cat: 'ring', game: 'FE16', name: 'Prayer Ring', stats: 'Miracle · реген 10%', desc: 'Даёт навык Miracle и лечение в начале фазы.' },
+  { id: 'bondring', cat: 'ring', game: 'FE17', name: 'Bond Rings', stats: 'S / A / B / C', desc: 'Кольца связи в Engage: малые бонусы к статам и иногда навык. Создаются в Сомниэле из осколков.' },
+  { id: 'emblemring', cat: 'ring', game: 'FE17', name: 'Emblem Rings', stats: '12 колец', desc: 'Главная механика Engage: дух героя прошлых игр. Даёт синхро-навыки, Engage и оружие Эмблемы.' },
+
+  // ---------- Усилители ----------
+  { id: 'angelicrobe', cat: 'booster', game: 'FE7', name: 'Angelic Robe', stats: 'HP +7', desc: 'Навсегда повышает максимум HP.' },
+  { id: 'energyring', cat: 'booster', game: 'FE7', name: 'Energy Ring', stats: 'Str/Mag +2', desc: 'Навсегда повышает силу или магию.' },
+  { id: 'secretbook', cat: 'booster', game: 'FE7', name: 'Secret Book', stats: 'Skl +2', desc: 'Навсегда повышает мастерство.' },
+  { id: 'speedwings', cat: 'booster', game: 'FE7', name: 'Speedwings', stats: 'Spd +2', desc: 'Навсегда повышает скорость. Самый ценный бустер в GBA.' },
+  { id: 'goddessicon', cat: 'booster', game: 'FE7', name: 'Goddess Icon', stats: 'Lck +2', desc: 'Навсегда повышает удачу.' },
+  { id: 'dracoshield', cat: 'booster', game: 'FE7', name: 'Dracoshield', stats: 'Def +2', desc: 'Навсегда повышает защиту.' },
+  { id: 'talisman', cat: 'booster', game: 'FE7', name: 'Talisman', stats: 'Res +2', desc: 'Навсегда повышает сопротивление.' },
+  { id: 'boots', cat: 'booster', game: 'FE7', name: 'Boots', stats: 'Mov +2', desc: 'Навсегда повышает передвижение.' },
+  { id: 'bodyring', cat: 'booster', game: 'FE7', name: 'Body Ring', stats: 'Con +2', desc: 'Повышает телосложение: меньше штраф от веса и больше Aid.' },
+  { id: 'afasdrops', cat: 'booster', game: 'FE7', name: "Afa's Drops", stats: 'Growth +5%', desc: 'Повышает все шансы роста на 5% навсегда.' },
+
+  // ---------- Повышение ----------
+  { id: 'herocrest', cat: 'promo', game: 'FE7', name: 'Hero Crest', stats: 'Lv 10+', desc: 'Повышение Fighter, Mercenary, Myrmidon.' },
+  { id: 'knightcrest', cat: 'promo', game: 'FE7', name: 'Knight Crest', stats: 'Lv 10+', desc: 'Повышение Cavalier и Knight.' },
+  { id: 'orionsbolt', cat: 'promo', game: 'FE7', name: "Orion's Bolt", stats: 'Lv 10+', desc: 'Повышение Archer и Nomad.' },
+  { id: 'elysianwhip', cat: 'promo', game: 'FE7', name: 'Elysian Whip', stats: 'Lv 10+', desc: 'Повышение Pegasus Knight и Wyvern Rider.' },
+  { id: 'guidingring', cat: 'promo', game: 'FE7', name: 'Guiding Ring', stats: 'Lv 10+', desc: 'Повышение магов, клериков, монахов, шаманов, трубадуров.' },
+  { id: 'earthseal', cat: 'promo', game: 'FE7', name: 'Earth Seal', stats: 'Lv 10+', desc: 'Универсальный предмет повышения.' },
+  { id: 'heavenseal', cat: 'promo', game: 'FE7', name: 'Heaven Seal', stats: 'Лорды', desc: 'Повышение лордов.' },
+  { id: 'masterseal', cat: 'promo', game: 'FE13', name: 'Master Seal', stats: 'Lv 10+', desc: 'Повышение любого базового класса (Awakening, Fates).' },
+  { id: 'secondseal', cat: 'promo', game: 'FE13', name: 'Second Seal', stats: 'Lv 10+', desc: 'Смена класса с сохранением навыков. Основа билдостроения в Awakening/Fates/Engage.' },
+  { id: 'certification', cat: 'promo', game: 'FE16', name: 'Сертификационный экзамен', stats: 'Seal', desc: 'В Three Houses нужен Seal (Beginner/Intermediate/Advanced/Master) и уровень навыков для сдачи.' },
+
+  // ---------- Расходники ----------
+  { id: 'vulnerary', cat: 'consumable', game: 'FE7', name: 'Vulnerary', stats: '+10 HP · 3 исп.', desc: 'Базовое лечение.' },
+  { id: 'elixir', cat: 'consumable', game: 'FE7', name: 'Elixir', stats: 'Полное HP · 3 исп.', desc: 'Сильное лечение.' },
+  { id: 'purewater', cat: 'consumable', game: 'FE7', name: 'Pure Water', stats: 'Res +7', desc: 'Временно повышает сопротивление (−1 каждый ход).' },
+  { id: 'torch', cat: 'consumable', game: 'FE7', name: 'Torch', stats: 'Обзор +4', desc: 'Освещает туман войны.' },
+  { id: 'antitoxin', cat: 'consumable', game: 'FE7', name: 'Antitoxin', stats: 'Лечит яд', desc: 'Снимает отравление.' },
+  { id: 'doorkey', cat: 'consumable', game: 'FE7', name: 'Door / Chest Key', stats: '1 исп.', desc: 'Открывают двери и сундуки. Воры делают это бесплатно.' },
+  { id: 'lockpick', cat: 'consumable', game: 'FE7', name: 'Lockpick', stats: '15 исп.', desc: 'Отмычка для воров и ассасинов.' },
+  { id: 'silvercard', cat: 'consumable', game: 'FE7', name: 'Silver Card', stats: 'Скидка 50%', desc: 'В инвентаре — все покупки за полцены.' },
+  { id: 'fillasmight', cat: 'consumable', game: 'FE7', name: "Filla's Might", stats: 'Атк +10 на ход', desc: 'Одна из четырёх «бафф-реликвий» FE7 (также Ninis\'s Grace, Thor\'s Ire, Set\'s Litany).' },
+];
+window.FE_ITEMS_BY_ID = Object.fromEntries(window.FE_ITEMS.map((i) => [i.id, i]));

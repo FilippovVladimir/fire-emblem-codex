@@ -9,7 +9,7 @@ window.FE_MECH_CATS = [
 
 window.FE_MECHANICS = [
   /* ===================== БОЙ ===================== */
-  { id: 'forecast', cat: 'combat', title: 'Порядок боя и прогноз', lead: 'Кто бьёт первым, сколько раз и в каком порядке.',
+  { id: 'forecast', en: 'Combat Forecast', cat: 'combat', title: 'Порядок боя и прогноз', lead: 'Кто бьёт первым, сколько раз и в каком порядке.',
     body: `
 <p>Каждая атака в Fire Emblem — мини-раунд между <b>инициатором</b> (тем, кто напал) и <b>защитником</b>. Перед атакой игра показывает <b>прогноз боя</b>: урон, точность (Hit), шанс крита (Crit) и «×2», если кто-то бьёт дважды.</p>
 <h3>Стандартный порядок ударов</h3>
@@ -29,7 +29,7 @@ window.FE_MECHANICS = [
 </ul>
 <div class="tip"><b>Совет:</b> лучшая защита — не получать контратаку. Атакуйте магов и лучников в ближнем бою, а рыцарей — с дистанции.</div>` },
 
-  { id: 'damage', cat: 'combat', title: 'Атака и урон', lead: 'Как считается урон и почему 0 — тоже число.',
+  { id: 'damage', en: 'Attack & Damage', cat: 'combat', title: 'Атака и урон', lead: 'Как считается урон и почему 0 — тоже число.',
     body: `
 <div class="formula"><span class="fl">Атака (GBA)</span> = Str (или Mag) + (Mt + бонус треугольника) × Эффективность + поддержки</div>
 <div class="formula"><span class="fl">Урон</span> = (Атака − Def/Res цели − бонус местности) × Крит</div>
@@ -44,7 +44,7 @@ window.FE_MECHANICS = [
 <tr><td>Three Houses</td><td>Защита — это Prt и Rsl: Def/Res + бонусы щита, батальона и умений.</td></tr></table>
 <div data-widget="damage"></div>` },
 
-  { id: 'weight', cat: 'combat', title: 'Вес оружия и телосложение', lead: 'Полный разбор: как вес замедляет юнита в каждой игре и что его компенсирует.',
+  { id: 'weight', en: 'Weight & Constitution', cat: 'combat', title: 'Вес оружия и телосложение', lead: 'Полный разбор: как вес замедляет юнита в каждой игре и что его компенсирует.',
     body: `
 <p><b>Вес (Wt)</b> — скрытый «налог» на скорость. Он почти никогда не меняет урон, но уменьшает <b>скорость атаки (AS)</b>, а от неё зависят <b>удвоение</b> и (в большинстве игр) <b>уклонение</b>. Поэтому тяжёлое оружие может сделать удар сильнее, но в итоге снизить урон за бой — юнит перестаёт бить дважды.</p>
 <div class="formula"><span class="fl">Общая идея</span>: AS = Spd − max(0, Вес − «грузоподъёмность»)</div>
@@ -84,7 +84,7 @@ window.FE_MECHANICS = [
 <li>Всегда сравнивайте прогноз: «Silver» без удвоения часто слабее «Iron» с удвоением.</li>
 </ul>` },
 
-  { id: 'doubling', cat: 'combat', title: 'Скорость атаки и удвоение', lead: 'Повторный удар — главный множитель урона в серии.',
+  { id: 'doubling', en: 'Attack Speed & Doubling', cat: 'combat', title: 'Скорость атаки и удвоение', lead: 'Повторный удар — главный множитель урона в серии.',
     body: `
 <p>Повторный удар (doubling, follow-up) происходит, если <b>скорость атаки (AS)</b> одного бойца выше, чем у другого, на порог. AS — это Spd с учётом веса оружия (подробнее — <a href="#/mechanics/weight">гайд по весу</a>).</p>
 <table class="tbl"><tr><th>Игра</th><th>Порог удвоения</th></tr>
@@ -105,7 +105,7 @@ window.FE_MECHANICS = [
 </ul>
 <div data-widget="doubling"></div>` },
 
-  { id: 'hit', cat: 'combat', title: 'Точность и уклонение', lead: 'Откуда берётся число Hit в прогнозе.',
+  { id: 'hit', en: 'Hit & Avoid', cat: 'combat', title: 'Точность и уклонение', lead: 'Откуда берётся число Hit в прогнозе.',
     body: `
 <div class="formula"><span class="fl">Hit в прогнозе</span> = Точность атакующего − Уклонение цели (0…100)</div>
 <table class="tbl"><tr><th>Игра</th><th>Точность</th><th>Уклонение</th></tr>
@@ -118,7 +118,7 @@ window.FE_MECHANICS = [
 <p>К точности добавляются треугольник оружия, ранги (S-ранг в GBA: +5), поддержки и навыки. К уклонению — <b>местность</b>: лес +20, форт +20, горы +30 (GBA).</p>
 <div class="tip">Число в прогнозе — не настоящий шанс! Почти во всех играх с FE6 работает <a href="#/mechanics/truehit">истинная точность</a>.</div>` },
 
-  { id: 'truehit', cat: 'combat', title: 'Истинная точность (RNG)', lead: 'Почему 80% почти никогда не промахиваются, а 30% почти никогда не попадают.',
+  { id: 'truehit', en: 'True Hit (RNG)', cat: 'combat', title: 'Истинная точность (RNG)', lead: 'Почему 80% почти никогда не промахиваются, а 30% почти никогда не попадают.',
     body: `
 <p>Игра генерирует случайные числа (RN). Как они сравниваются с показанным Hit — зависит от игры.</p>
 <h3>1RN — «честная» точность</h3>
@@ -133,7 +133,7 @@ window.FE_MECHANICS = [
 <div data-widget="truehit"></div>
 <p class="muted">Крит и проки навыков во всех играх — один RN: 10% крита — это ровно 10%.</p>` },
 
-  { id: 'crit', cat: 'combat', title: 'Критические удары', lead: 'Тройной урон и как его избегать.',
+  { id: 'crit', en: 'Critical Hits', cat: 'combat', title: 'Критические удары', lead: 'Тройной урон и как его избегать.',
     body: `
 <div class="formula"><span class="fl">Шанс крита</span> = Crit атакующего − Dodge (уклонение от крита) цели</div>
 <table class="tbl"><tr><th>Игра</th><th>Crit</th><th>Dodge</th></tr>
@@ -146,30 +146,30 @@ window.FE_MECHANICS = [
 <p>Крит умножает урон <b>на 3</b> (FE4–FE5 — ×2; Killer-оружие Fates и навык Brute Force в Engage — ×4). Промах не может быть критом.</p>
 <div class="tip"><b>Luck</b> недооценён: он защищает от критов. Против боссов с Killer-оружием юнит с высоким Lck гораздо безопаснее.</div>` },
 
-  { id: 'triangle', cat: 'combat', title: 'Треугольник оружия', lead: 'Камень-ножницы-бумага серии и его варианты.',
+  { id: 'triangle', en: 'Weapon Triangle', cat: 'combat', title: 'Треугольник оружия', lead: 'Камень-ножницы-бумага серии и его варианты.',
     body: `
 <div class="tri-wrap"><svg viewBox="0 0 260 220" class="tri-svg" aria-label="Треугольник оружия">
 <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
 <g stroke="currentColor" stroke-width="2" fill="none" marker-end="url(#ar)" class="tri-arrows">
 <path d="M118 42 L58 160"/><path d="M78 182 L182 182"/><path d="M202 160 L142 42"/></g>
-<g class="tri-node"><circle cx="130" cy="28" r="22"/><text x="130" y="33">Меч</text></g>
-<g class="tri-node"><circle cx="48" cy="182" r="22"/><text x="48" y="187">Топор</text></g>
-<g class="tri-node"><circle cx="212" cy="182" r="22"/><text x="212" y="187">Копьё</text></g>
-</svg><p class="muted">Стрелка = «побеждает»: меч → топор → копьё → меч</p></div>
+<g class="tri-node"><circle cx="130" cy="28" r="22"/><text x="130" y="33">Sword</text></g>
+<g class="tri-node"><circle cx="48" cy="182" r="22"/><text x="48" y="187">Axe</text></g>
+<g class="tri-node"><circle cx="212" cy="182" r="22"/><text x="212" y="187">Lance</text></g>
+</svg><p class="muted">Стрелка = «побеждает»: Sword → Axe → Lance → Sword</p></div>
 <table class="tbl"><tr><th>Игра</th><th>Бонус преимущества (недостаток — с минусом)</th></tr>
 <tr><td>FE4</td><td>Hit +20</td></tr>
 <tr><td>FE5</td><td>Hit +5</td></tr>
 <tr><td>FE6</td><td>Hit +10, Mt +1</td></tr>
-<tr><td>FE7, FE8</td><td>Hit +15, Mt +1. Плюс магический: Анима → Свет → Тьма → Анима</td></tr>
+<tr><td>FE7, FE8</td><td>Hit +15, Mt +1. Плюс магический: Anima → Light → Dark → Anima</td></tr>
 <tr><td>FE9, FE10</td><td>Hit +10, Mt +1</td></tr>
 <tr><td>Awakening</td><td>По рангу оружия: E — Hit +5; D — +10; C — +10 и Атк +1; B — +15 и Атк +1</td></tr>
-<tr><td>Fates</td><td>По рангу: E +5; D +10; C +10/+1; B +15/+1; A — Hit +20 и Атк +2. Расширенный: меч/магия → топор/лук → копьё/кинжал</td></tr>
+<tr><td>Fates</td><td>По рангу: E +5; D +10; C +10/+1; B +15/+1; A — Hit +20 и Атк +2. Расширенный: Sword/Tome → Axe/Bow → Lance/Dagger</td></tr>
 <tr><td>Echoes, Three Houses</td><td>Нет треугольника (в 3H его роль играют Breaker-умения)</td></tr>
 <tr><td>Engage</td><td>Без бонусов к статам: удар <b>инициатора</b> с преимуществом вызывает <b>Break</b> — цель не контратакует до своей следующей фазы. Броня иммунна к Break. Кулаки (Arts) «ломают» луки, кинжалы и книги</td></tr>
 <tr><td>Heroes</td><td>Атака +20%</td></tr></table>
 <p><b>Reaver-оружие</b> (Lancereaver и т.п.) переворачивает треугольник и удваивает его эффект.</p>` },
 
-  { id: 'effective', cat: 'combat', title: 'Эффективный урон', lead: 'Почему лучник убивает пегаса с одного выстрела.',
+  { id: 'effective', en: 'Effective Damage', cat: 'combat', title: 'Эффективный урон', lead: 'Почему лучник убивает пегаса с одного выстрела.',
     body: `
 <div class="formula"><span class="fl">Атака</span> = Str + Mt × Множитель (если оружие эффективно против цели)</div>
 <p>Множитель применяется к <b>мощи оружия</b>, а не к итоговому урону.</p>
@@ -180,14 +180,14 @@ window.FE_MECHANICS = [
 <tr><td>Radiant Dawn, Awakening, Fates, Echoes</td><td>×3</td></tr>
 <tr><td>Three Houses, Engage</td><td>×3 (бонус от навыков и артов — ×2)</td></tr></table>
 <table class="tbl"><tr><th>Тип цели</th><th>Против кого эффективно</th></tr>
-<tr><td>Летуны</td><td>Луки, Wind/Excalibur, Grounder</td></tr>
-<tr><td>Броня</td><td>Armorslayer, Hammer, Rapier, Helm Splitter</td></tr>
-<tr><td>Всадники</td><td>Horseslayer / Beast Killer, Rapier, Knightkneeler</td></tr>
-<tr><td>Драконы</td><td>Wyrmslayer, Falchion, легендарное оружие FE7</td></tr>
-<tr><td>Монстры (3H)</td><td>Seraphim, Bane of Monsters</td></tr></table>
+<tr><td>Flying</td><td>Луки, Wind/Excalibur, Grounder</td></tr>
+<tr><td>Armored</td><td>Armorslayer, Hammer, Rapier, Helm Splitter</td></tr>
+<tr><td>Cavalry</td><td>Horseslayer / Beast Killer, Rapier, Knightkneeler</td></tr>
+<tr><td>Dragon</td><td>Wyrmslayer, Falchion, легендарное оружие FE7</td></tr>
+<tr><td>Monster (3H)</td><td>Seraphim, Bane of Monsters</td></tr></table>
 <div class="tip">Защита от эффективности: Delphi Shield (FE7), Aurora / Kadmos / Lampos Shield (3H). Все щиты — в <a href="#/items">базе предметов</a>.</div>` },
 
-  { id: 'range', cat: 'combat', title: 'Дальность, храброе оружие и контратака', lead: 'Как не получить сдачи.',
+  { id: 'range', en: 'Range, Brave Weapons & Counters', cat: 'combat', title: 'Дальность, храброе оружие и контратака', lead: 'Как не получить сдачи.',
     body: `
 <ul>
 <li><b>1</b> — ближний бой (мечи, большинство копий и топоров).</li>
@@ -198,7 +198,7 @@ window.FE_MECHANICS = [
 <h3>Храброе (Brave) оружие</h3>
 <p>Каждая атака = два удара подряд. В классических частях (GBA, Awakening) работает и в защите. В <b>Fates, Three Houses, Engage</b> — только при собственной атаке. Кастеты в 3H и Arts в Engage ведут себя так же.</p>` },
 
-  { id: 'magicstaff', cat: 'combat', title: 'Магия и посохи', lead: 'Маги, лекари и как считается попадание посохов.',
+  { id: 'magicstaff', en: 'Magic & Staves', cat: 'combat', title: 'Магия и посохи', lead: 'Маги, лекари и как считается попадание посохов.',
     body: `
 <p>Магия бьёт по <b>Res</b>, обычно имеет дальность 1–2. Маги хрупкие, но обходят высокую броню рыцарей.</p>
 <h3>Точность статусных посохов (FE7)</h3>
@@ -208,7 +208,7 @@ window.FE_MECHANICS = [
 <div class="formula"><span class="fl">Heal</span> = Mag + 10 · <span class="fl">Mend</span> = Mag + 20 · <span class="fl">Recover</span> = полное HP</div>
 <p>В Three Houses заклинания — заряды, восстанавливающиеся после битвы, и у них есть вес. В Engage точность посохов = Hit + Mag + Dex.</p>` },
 
-  { id: 'skillproc', cat: 'combat', title: 'Как срабатывают навыки', lead: 'Скилл-проки: шанс, приоритет, Nihil.',
+  { id: 'skillproc', en: 'Skill Activation', cat: 'combat', title: 'Как срабатывают навыки', lead: 'Скилл-проки: шанс, приоритет, Nihil.',
     body: `
 <p>Активируемые навыки проверяются при каждом ударе по своей формуле — почти всегда от <b>Skl/Dex</b>. Значения для Awakening:</p>
 <table class="tbl"><tr><th>Навык</th><th>Шанс</th><th>Эффект</th></tr>
@@ -225,7 +225,7 @@ window.FE_MECHANICS = [
 <p>Все навыки — в <a href="#/skills">базе навыков</a>; большинство можно попробовать в <a href="#/sim">симуляторе</a>.</p>` },
 
   /* ===================== РАЗВИТИЕ ===================== */
-  { id: 'growths', cat: 'growth', title: 'Рост характеристик', lead: 'Growth rates, средние статы и почему ваш Сейн бесполезен.',
+  { id: 'growths', en: 'Growth Rates', cat: 'growth', title: 'Рост характеристик', lead: 'Growth rates, средние статы и почему ваш Сейн бесполезен.',
     body: `
 <p>При каждом повышении уровня для каждой характеристики бросается RN: если он меньше <b>шанса роста</b> (growth), стат растёт на +1.</p>
 <div class="formula"><span class="fl">Средний стат</span> = База + Growth × (Уровень − Базовый уровень)</div>
@@ -240,7 +240,7 @@ window.FE_MECHANICS = [
 </ul>
 <div class="tip">Попробуйте <a href="#/tools">симулятор уровней</a>: он покажет, как сильно разнятся результаты при одних и тех же шансах.</div>` },
 
-  { id: 'exp', cat: 'growth', title: 'Опыт', lead: 'Кому отдавать убийства.',
+  { id: 'exp', en: 'Experience (EXP)', cat: 'growth', title: 'Опыт', lead: 'Кому отдавать убийства.',
     body: `
 <p>Уровень = 100 EXP. Опыт зависит от разницы уровней атакующего и цели; продвинутые классы считаются как «уровень + 20».</p>
 <h3>GBA (упрощённо)</h3>
@@ -251,7 +251,7 @@ window.FE_MECHANICS = [
 <ul><li><b>Убийства</b> дают гораздо больше опыта, чем урон — отдавайте их юнитам, которых нужно прокачать.</li>
 <li><b>BEXP</b> (FE9–10) — бонусный опыт за быстрое прохождение, раздаётся вручную; рост идёт в статах с наибольшими шансами.</li></ul>` },
 
-  { id: 'classes', cat: 'growth', title: 'Классы и повышение', lead: 'Promotion, reclass, сертификаты.',
+  { id: 'classes', en: 'Classes & Promotion', cat: 'growth', title: 'Классы и повышение', lead: 'Promotion, reclass, сертификаты.',
     body: `
 <p>Большинство юнитов начинают в <b>базовом классе</b> и с 10 уровня могут <b>повыситься</b> предметом — получая бонусы к статам и новые типы оружия.</p>
 <table class="tbl"><tr><th>Игры</th><th>Система</th></tr>
@@ -262,7 +262,7 @@ window.FE_MECHANICS = [
 <tr><td>Engage</td><td>Master Seal / Second Seal + наследование навыков Эмблем за SP.</td></tr></table>
 <div class="tip"><b>Когда повышаться?</b> На 20 уровне — больше статов в сумме; раньше — быстрее сильный класс. Все предметы повышения — в <a href="#/items">базе предметов</a>.</div>` },
 
-  { id: 'wrank', cat: 'growth', title: 'Ранги оружия', lead: 'E, D, C, B, A, S — и что они дают.',
+  { id: 'wrank', en: 'Weapon Ranks', cat: 'growth', title: 'Ранги оружия', lead: 'E, D, C, B, A, S — и что они дают.',
     body: `
 <p>Чтобы держать оружие, нужен его ранг. Ранг растёт от использования (WEXP).</p>
 <ul>
@@ -272,7 +272,7 @@ window.FE_MECHANICS = [
 <li><b>Three Houses</b>: «уровни навыков» открывают классы и боевые арты.</li>
 </ul>` },
 
-  { id: 'durability', cat: 'growth', title: 'Прочность оружия', lead: 'Экономика серии.',
+  { id: 'durability', en: 'Durability', cat: 'growth', title: 'Прочность оружия', lead: 'Экономика серии.',
     body: `
 <p>В большинстве частей оружие ломается после N использований (Iron ≈ 45, Silver ≈ 20). Каждая атака тратит 1 единицу.</p>
 <ul><li><b>Fates и Engage</b> — оружие вечное, баланс через штрафы и цену.</li>
@@ -282,20 +282,20 @@ window.FE_MECHANICS = [
 <li>Навык <b>Armsthrift</b> (Awakening) — шанс Lck×2 % не потратить прочность.</li></ul>` },
 
   /* ===================== КАРТА ===================== */
-  { id: 'terrain', cat: 'map', title: 'Передвижение и местность', lead: 'Лес, горы, форты и стоимость клеток.',
+  { id: 'terrain', en: 'Movement & Terrain', cat: 'map', title: 'Передвижение и местность', lead: 'Лес, горы, форты и стоимость клеток.',
     body: `
 <p>Каждая клетка стоит очки передвижения (Mov) и даёт бонусы стоящему на ней.</p>
 <table class="tbl"><tr><th>Клетка</th><th>Avo</th><th>Def</th><th>Особое</th></tr>
-<tr><td>Равнина</td><td>0</td><td>0</td><td></td></tr>
-<tr><td>Лес</td><td>+20</td><td>+1</td><td>Дорого для всадников</td></tr>
-<tr><td>Горы</td><td>+30</td><td>+1</td><td>Недоступны всадникам</td></tr>
-<tr><td>Форт</td><td>+20</td><td>+2</td><td>Лечит 20% HP за ход</td></tr>
-<tr><td>Трон / Ворота</td><td>+30</td><td>+3</td><td>Лечит; обычно там стоит босс</td></tr>
-<tr><td>Колонна</td><td>+20</td><td>+1</td><td></td></tr></table>
+<tr><td>Plain</td><td>0</td><td>0</td><td></td></tr>
+<tr><td>Forest</td><td>+20</td><td>+1</td><td>Дорого для всадников</td></tr>
+<tr><td>Mountain</td><td>+30</td><td>+1</td><td>Недоступны всадникам</td></tr>
+<tr><td>Fort</td><td>+20</td><td>+2</td><td>Лечит 20% HP за ход</td></tr>
+<tr><td>Throne / Gate</td><td>+30</td><td>+3</td><td>Лечит; обычно там стоит босс</td></tr>
+<tr><td>Pillar</td><td>+20</td><td>+1</td><td></td></tr></table>
 <p class="muted">Значения GBA (FE7). В других частях бонусы похожи по смыслу, но отличаются. Летуны обычно игнорируют стоимость местности, но и не получают бонусов.</p>
 <div class="tip"><b>Канто</b> у всадников позволяет «ударить и отойти» — основа безопасной агрессии.</div>` },
 
-  { id: 'rescue', cat: 'map', title: 'Спасение, Aid и Con', lead: 'Как поднять союзника и унести его из-под удара.',
+  { id: 'rescue', en: 'Rescue, Aid & Con', cat: 'map', title: 'Спасение, Aid и Con', lead: 'Как поднять союзника и унести его из-под удара.',
     body: `
 <p>В FE5–FE10 юнит может <b>спасти</b> (Rescue) союзника. Пока он несёт союзника, его Spd и Skl уменьшаются вдвое.</p>
 <div class="formula"><span class="fl">GBA</span>: можно спасти, если Aid ≥ Con цели<br>Aid: пехота = Con − 1 · всадники = 25 − Con · всадницы = 20 − Con</div>
@@ -303,7 +303,7 @@ window.FE_MECHANICS = [
 <div class="formula"><span class="fl">Tellius</span>: используется отдельный стат Weight (вес тела)</div>
 <p>Трюк <b>Rescue → Drop</b>: спасти, сделать шаг и поставить союзника, «протащив» его дальше его передвижения. В современных частях роль спасения выполняют Swap, Shove, Reposition и Pair Up. Подробнее про Con — в <a href="#/mechanics/weight">гайде по весу</a>.</p>` },
 
-  { id: 'ai', cat: 'map', title: 'Поведение ИИ и бейт', lead: 'Как враги выбирают цель — и как этим пользоваться.',
+  { id: 'ai', en: 'Enemy AI & Baiting', cat: 'map', title: 'Поведение ИИ и бейт', lead: 'Как враги выбирают цель — и как этим пользоваться.',
     body: `
 <p>Враги обычно оценивают: могу ли я убить, сколько урона нанесу и сколько получу в ответ. Упрощённо: приоритет — <b>убийство</b>, затем <b>максимальный урон</b>.</p>
 <ul>
@@ -313,14 +313,14 @@ window.FE_MECHANICS = [
 <li>Воры бегут к сундукам, лекари лечат союзников.</li>
 </ul>` },
 
-  { id: 'fog', cat: 'map', title: 'Туман войны', lead: 'Когда не видно врагов.',
+  { id: 'fog', en: 'Fog of War', cat: 'map', title: 'Туман войны', lead: 'Когда не видно врагов.',
     body: `
 <p>На картах с <b>туманом</b> видны только клетки в радиусе обзора ваших юнитов (у воров — больше). Факелы (Torch, +4 к обзору) и посох Torch расширяют обзор.</p>
 <ul><li>Двигайтесь медленно и держите построение.</li>
 <li>Воры — ваши разведчики.</li>
 <li>Сначала разведка, потом атака.</li></ul>` },
 
-  { id: 'difficulty', cat: 'map', title: 'Сложность и перманентная смерть', lead: 'Classic vs Casual, Phoenix и перемотка.',
+  { id: 'difficulty', en: 'Difficulty & Permadeath', cat: 'map', title: 'Сложность и перманентная смерть', lead: 'Classic vs Casual, Phoenix и перемотка.',
     body: `
 <p>Фирменная черта серии — <b>перманентная смерть</b>: павший юнит не возвращается (смерть лорда = Game Over).</p>
 <table class="tbl"><tr><th>Режим</th><th>Смысл</th></tr>
@@ -332,7 +332,7 @@ window.FE_MECHANICS = [
 <div class="tip">Новичкам: Casual не делает бой проще, он просто снимает стресс. Играйте как удобно.</div>` },
 
   /* ===================== СИСТЕМЫ ===================== */
-  { id: 'supports', cat: 'systems', title: 'Поддержки (Supports)', lead: 'Дружба в Fire Emblem даёт реальные бонусы.',
+  { id: 'supports', en: 'Supports', cat: 'systems', title: 'Поддержки (Supports)', lead: 'Дружба в Fire Emblem даёт реальные бонусы.',
     body: `
 <p>Юниты, сражающиеся рядом, открывают диалоги поддержки <b>C → B → A</b> (иногда S — романтика/брак).</p>
 <ul><li><b>GBA</b>: бонус зависит от <b>сродства</b> (Fire, Thunder, Wind, Ice, Dark, Light, Anima) обоих и работает в пределах 3 клеток: Hit, Avo, Crit, Ddg и немного Атк/Защ.</li>
@@ -340,7 +340,7 @@ window.FE_MECHANICS = [
 <li><b>Awakening / Fates</b>: S-поддержка → брак → дети с наследованием навыков и классов.</li>
 <li><b>Three Houses</b>: поддержки дают бонусы к Hit, Avo, Crit и влияют на эпилоги.</li></ul>` },
 
-  { id: 'pairup', cat: 'systems', title: 'Pair Up и стойки (Awakening, Fates)', lead: 'Два юнита в одной клетке.',
+  { id: 'pairup', en: 'Pair Up & Stances', cat: 'systems', title: 'Pair Up и стойки (Awakening, Fates)', lead: 'Два юнита в одной клетке.',
     body: `
 <h3>Awakening</h3>
 <p><b>Pair Up</b>: юнит «несёт» напарника и получает бонусы к статам. Напарник может ударить или блокировать:</p>
@@ -350,7 +350,7 @@ window.FE_MECHANICS = [
 <li><b>Guard Stance</b> — напарник даёт статы и блок, который заполняется шкалой и гарантированно блокирует атаку.</li>
 <li>Враги тоже используют стойки!</li></ul>` },
 
-  { id: 'battalions', cat: 'systems', title: 'Батальоны и гамбиты (Three Houses)', lead: 'Отряды поддержки и ваши «спецатаки».',
+  { id: 'battalions', en: 'Battalions & Gambits', cat: 'systems', title: 'Батальоны и гамбиты (Three Houses)', lead: 'Отряды поддержки и ваши «спецатаки».',
     body: `
 <p><b>Батальон</b> экипируется юниту, даёт бонусы к статам и открывает <b>гамбит</b> — специальное действие без контратаки.</p>
 <ul><li>Гамбиты бьют по площади или по одной цели.</li>
@@ -359,7 +359,7 @@ window.FE_MECHANICS = [
 <li><b>Combat Arts</b> — приёмы оружия: бонус Mt/Hit/Crit, эффективность, но трата прочности и <b>без повторного удара</b>.</li></ul>
 <p>Все арты — в <a href="#/arts">базе артов</a>.</p>` },
 
-  { id: 'engage', cat: 'systems', title: 'Кольца Эмблем и Engage', lead: 'Главная механика Fire Emblem Engage.',
+  { id: 'engage', en: 'Emblem Rings & Engage', cat: 'systems', title: 'Кольца Эмблем и Engage', lead: 'Главная механика Fire Emblem Engage.',
     body: `
 <p>Юнит экипирует <b>Кольцо Эмблемы</b> — духа героя прошлых игр — и получает пассивные бонусы и синхро-навыки.</p>
 <ul><li><b>Engage</b>: при заполненной шкале юнит сливается с Эмблемой на 3 хода: новое оружие, навыки и одна мощная <b>Engage-атака</b> (без повторного удара).</li>

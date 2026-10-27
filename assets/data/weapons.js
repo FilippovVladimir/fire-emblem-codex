@@ -282,9 +282,9 @@
   window.FE_WEAPONS = W;
   window.FE_WEAPONS_BY_ID = Object.fromEntries(W.map((w) => [w.id, w]));
   window.FE_WTYPES = {
-    sword: 'Меч', lance: 'Копьё', axe: 'Топор', bow: 'Лук', dagger: 'Кинжал', gauntlet: 'Кулаки',
-    anima: 'Анима', light: 'Свет', dark: 'Тьма', tome: 'Книга'
+    sword: 'Sword', lance: 'Lance', axe: 'Axe', bow: 'Bow', dagger: 'Dagger', gauntlet: 'Gauntlets / Arts',
+    anima: 'Anima', light: 'Light', dark: 'Dark', tome: 'Tome'
   };
   window.FE_RULE_GAMES = { gba: 'Blazing Blade (FE7)', awakening: 'Awakening', fates: 'Fates', '3h': 'Three Houses', engage: 'Engage' };
-  window.FE_MOVE = { infantry: 'Пехота', armor: 'Броня', cavalry: 'Всадник', flier: 'Летун', dragon: 'Дракон', monster: 'Монстр' };
+  window.FE_MOVE = { infantry: 'Infantry', armor: 'Armored', cavalry: 'Cavalry', flier: 'Flying', dragon: 'Dragon', monster: 'Monster' };
 })();

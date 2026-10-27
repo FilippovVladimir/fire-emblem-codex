@@ -92,7 +92,7 @@ window.FE_ITEMS = [
   { id: 'heavenseal', cat: 'promo', game: 'FE7', name: 'Heaven Seal', stats: 'Лорды', desc: 'Повышение лордов.' },
   { id: 'masterseal', cat: 'promo', game: 'FE13', name: 'Master Seal', stats: 'Lv 10+', desc: 'Повышение любого базового класса (Awakening, Fates).' },
   { id: 'secondseal', cat: 'promo', game: 'FE13', name: 'Second Seal', stats: 'Lv 10+', desc: 'Смена класса с сохранением навыков. Основа билдостроения в Awakening/Fates/Engage.' },
-  { id: 'certification', cat: 'promo', game: 'FE16', name: 'Сертификационный экзамен', stats: 'Seal', desc: 'В Three Houses нужен Seal (Beginner/Intermediate/Advanced/Master) и уровень навыков для сдачи.' },
+  { id: 'certification', cat: 'promo', game: 'FE16', name: 'Certification Exam', stats: 'Seal', desc: 'В Three Houses нужен Seal (Beginner/Intermediate/Advanced/Master) и уровень навыков для сдачи.' },
 
   // ---------- Расходники ----------
   { id: 'vulnerary', cat: 'consumable', game: 'FE7', name: 'Vulnerary', stats: '+10 HP · 3 исп.', desc: 'Базовое лечение.' },

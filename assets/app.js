@@ -10,9 +10,9 @@
   const STAT_KEYS = ['hp', 'str', 'mag', 'skl', 'spd', 'lck', 'def', 'res', 'con'];
   const STAT_RU = { hp: 'HP', str: 'Str', mag: 'Mag', skl: 'Skl', spd: 'Spd', lck: 'Lck', def: 'Def', res: 'Res', con: 'Con' };
   const TERRAIN = {
-    plain: { n: 'Равнина', avo: 0, def: 0 }, forest: { n: 'Лес (+20 Avo, +1 Def)', avo: 20, def: 1 },
-    fort: { n: 'Форт (+20 Avo, +2 Def)', avo: 20, def: 2 }, mountain: { n: 'Горы (+30 Avo, +1 Def)', avo: 30, def: 1 },
-    throne: { n: 'Трон (+30 Avo, +3 Def)', avo: 30, def: 3 }, pillar: { n: 'Колонна (+20 Avo, +1 Def)', avo: 20, def: 1 }
+    plain: { n: 'Plain', avo: 0, def: 0 }, forest: { n: 'Forest (+20 Avo, +1 Def)', avo: 20, def: 1 },
+    fort: { n: 'Fort (+20 Avo, +2 Def)', avo: 20, def: 2 }, mountain: { n: 'Mountain (+30 Avo, +1 Def)', avo: 30, def: 1 },
+    throne: { n: 'Throne (+30 Avo, +3 Def)', avo: 30, def: 3 }, pillar: { n: 'Pillar (+20 Avo, +1 Def)', avo: 20, def: 1 }
   };
   const WORLD_COL = {
     Archanea: ['#3f6fd8', '#1d3a8a'], Valentia: ['#2e9b6a', '#145a3c'], Jugdral: ['#b0473c', '#5e1f19'], Elibe: ['#d08a2c', '#7a4a10'],
@@ -94,13 +94,13 @@
   </div>
   <div class="hero-stats"><div><b>${FE_MECHANICS.length}</b>гайдов</div><div><b>${FE_GAMES.length}</b>игр</div><div><b>${FE_HEROES.length}</b>героев</div><div><b>${FE_WEAPONS.length + FE_ITEMS.length}</b>предметов и оружия</div></div>
 </section>
-<div class="grid g3">${sections.map(([r, ic, t, d]) => `<a class="card sect-card" href="#/${r}"><div class="ic">${ICONS[ic]}</div><h3>${t}</h3><p>${d}</p></a>`).join('')}</div>
+<div class="grid g3x">${sections.map(([r, ic, t, d]) => `<a class="card sect-card" href="#/${r}"><div class="ic">${ICONS[ic]}</div><h3>${t}</h3><p>${d}</p></a>`).join('')}</div>
 <div class="grid g2" style="margin-top:28px">
   <div class="card" id="quiz"></div>
   <div class="card">
     <h2 style="margin-top:0">С чего начать читать</h2>
     <ol class="steps">
-      ${['forecast', 'weight', 'doubling', 'truehit', 'triangle', 'growths'].map((id) => `<li><a href="#/mechanics/${id}">${esc(FE_MECH_BY_ID[id].title)}</a> — <span class="muted">${esc(FE_MECH_BY_ID[id].lead)}</span></li>`).join('')}
+      ${['forecast', 'weight', 'doubling', 'truehit', 'triangle', 'growths'].map((id) => `<li><a href="#/mechanics/${id}">${esc(FE_MECH_BY_ID[id].en)}</a> <span class="muted">· ${esc(FE_MECH_BY_ID[id].title)}</span></li>`).join('')}
     </ol>
     <div class="tip"><b>Знаете ли вы?</b> В GBA-частях и Three Houses показанные 90% Hit на самом деле означают ≈98% — из-за системы двух случайных чисел. <a href="#/mechanics/truehit">Подробнее</a></div>
   </div>
@@ -148,7 +148,7 @@
     if (r.param && FE_MECH_BY_ID[r.param]) return renderArticle(FE_MECH_BY_ID[r.param]);
     app.innerHTML = `<div class="page-head"><div class="eyebrow">Гайды</div><h1>Механики</h1><p>Каждая микро-механика серии: как работает, по какой формуле и чем отличается между играми. Внутри некоторых гайдов есть мини-калькуляторы.</p></div>` +
       FE_MECH_CATS.map((c) => orn(c.name) + `<div class="grid g3">${FE_MECHANICS.filter((m) => m.cat === c.id).map((m) =>
-        `<a class="card sect-card mech-card" href="#/mechanics/${m.id}"><h3>${esc(m.title)}</h3><p>${esc(m.lead)}</p></a>`).join('')}</div>`).join('');
+        `<a class="card sect-card mech-card" href="#/mechanics/${m.id}"><h3>${esc(m.en)}</h3><div class="sub-ru">${esc(m.title)}</div><p>${esc(m.lead)}</p></a>`).join('')}</div>`).join('');
   };
 
   function renderArticle(m) {
@@ -156,12 +156,12 @@
     const cat = FE_MECH_CATS.find((c) => c.id === m.cat);
     app.innerHTML = `<div class="mech-layout">
       <aside class="mech-side">${FE_MECH_CATS.map((c) => `<h4>${c.name}</h4>${FE_MECHANICS.filter((x) => x.cat === c.id).map((x) =>
-        `<a href="#/mechanics/${x.id}" class="${x === m ? 'on' : ''}">${esc(x.title)}</a>`).join('')}`).join('')}</aside>
+        `<a href="#/mechanics/${x.id}" class="${x === m ? 'on' : ''}" title="${esc(x.title)}">${esc(x.en)}</a>`).join('')}`).join('')}</aside>
       <article class="article">
         <a href="#/mechanics" class="eyebrow">← ${esc(cat.name)}</a>
-        <h1 style="margin-top:6px">${esc(m.title)}</h1><p class="lead">${esc(m.lead)}</p>
+        <h1 style="margin-top:6px">${esc(m.en)}</h1><div class="sub-ru" style="font-size:14px;color:var(--gold);margin:-2px 0 10px">${esc(m.title)}</div><p class="lead">${esc(m.lead)}</p>
         ${m.body}
-        <div class="pager">${prev ? `<a class="btn" href="#/mechanics/${prev.id}">← ${esc(prev.title)}</a>` : '<span></span>'}${next ? `<a class="btn" href="#/mechanics/${next.id}">${esc(next.title)} →</a>` : ''}</div>
+        <div class="pager">${prev ? `<a class="btn" href="#/mechanics/${prev.id}">← ${esc(prev.en)}</a>` : '<span></span>'}${next ? `<a class="btn" href="#/mechanics/${next.id}">${esc(next.en)} →</a>` : ''}</div>
       </article></div>`;
     app.querySelectorAll('.tbl').forEach((t) => { if (!t.parentElement.classList.contains('tbl-wrap')) { const w = document.createElement('div'); w.className = 'tbl-wrap'; t.replaceWith(w); w.appendChild(t); } });
     mountWidgets(app);
@@ -311,6 +311,8 @@
     return p.join(' · ');
   }
 
+  const OPEN = new Set();
+  const sub = (side, key, title, sel, body) => `<details class="sub" data-sub="${side}-${key}" ${OPEN.has(side + '-' + key) ? 'open' : ''}><summary><b>${title}</b><span class="sel">${esc(sel)}</span></summary><div class="sub-body">${body}</div></details>`;
   function unitPanel(side) {
     const u = SIM[side], enemy = side === 'd';
     const R = FE.RULES[SIM.rules];
@@ -329,43 +331,44 @@
         <label>Тек. HP<input type="number" inputmode="numeric" data-k="curHp" value="${u.curHp}"></label>
       </div>
       <div class="panel-row">
-        <label class="field">Тип юнита<select data-k="move">${Object.entries(FE_MOVE).map(([k, v]) => `<option value="${k}" ${u.move === k ? 'selected' : ''}>${v}</option>`).join('')}</select></label>
-        <label class="field">Местность<select data-k="terrain">${Object.entries(TERRAIN).map(([k, v]) => `<option value="${k}" ${u.terrain === k ? 'selected' : ''}>${v.n}</option>`).join('')}</select></label>
+        <label class="field">Unit type<select data-k="move">${Object.entries(FE_MOVE).map(([k, v]) => `<option value="${k}" ${u.move === k ? 'selected' : ''}>${v}</option>`).join('')}</select></label>
+        <label class="field">Terrain<select data-k="terrain">${Object.entries(TERRAIN).map(([k, v]) => `<option value="${k}" ${u.terrain === k ? 'selected' : ''}>${v.n}</option>`).join('')}</select></label>
       </div>
-      <div class="sec-lbl">Оружие</div>
+      <div class="sec-lbl">Weapon · оружие</div>
       <select data-k="weaponId" class="full" aria-label="Оружие">${types.map((t) => `<optgroup label="${FE_WTYPES[t]}">${wl.filter((w) => w.type === t).map((w) => `<option value="${esc(w.id)}" ${u.weapon.id === w.id ? 'selected' : ''}>${esc(w.name)} — Mt ${w.mt} / Hit ${w.hit}${w.crit ? ' / Crit ' + w.crit : ''}</option>`).join('')}</optgroup>`).join('')}<option value="custom" ${u.weapon.id === 'custom' ? 'selected' : ''}>✎ Своё оружие</option></select>
-      <div class="wpn-in" style="margin-top:8px">
-        ${['mt', 'hit', 'crit', 'wt'].map((k) => `<label style="${k === 'wt' && !R.usesWeight ? 'opacity:.45' : ''}">${{ mt: 'Mt', hit: 'Hit', crit: 'Crit', wt: 'Wt' }[k]}<input type="number" inputmode="numeric" data-k="w.${k}" value="${u.weapon[k] || 0}"></label>`).join('')}
-      </div>
-      <div class="panel-row" style="margin-top:8px">
-        <label class="field">Тип оружия<select data-k="w.type">${Object.entries(FE_WTYPES).map(([k, v]) => `<option value="${k}" ${u.weapon.type === k ? 'selected' : ''}>${v}</option>`).join('')}</select></label>
-        <label class="field">Эффективно против<select data-k="w.eff"><option value="">—</option>${Object.entries(FE_MOVE).filter(([k]) => k !== 'infantry').map(([k, v]) => `<option value="${k}" ${u.weapon.eff[0] === k ? 'selected' : ''}>${v}</option>`).join('')}</select></label>
-      </div>
-      <div class="row" style="margin-top:8px;font-size:13px;gap:14px">
-        <label><input type="checkbox" data-k="w.magic" ${u.weapon.magic ? 'checked' : ''}> Магия</label>
-        <label><input type="checkbox" data-k="w.brave" ${u.weapon.brave ? 'checked' : ''}> Храброе</label>
-      </div>
       <div class="wnote">${esc(weaponNote(u.weapon))}</div>
-      <div class="sec-lbl">Снаряжение</div>
-      <select data-k="equip" class="full" aria-label="Снаряжение"><option value="">— нет —</option>${['shield', 'ring'].map((c) => `<optgroup label="${FE_ITEM_CATS[c].n}">${eqItems().filter((i) => i.cat === c).map((i) => `<option value="${i.id}" ${u.equip === i.id ? 'selected' : ''}>${esc(i.name)} (${esc(i.stats)})</option>`).join('')}</optgroup>`).join('')}</select>
-      ${!enemy ? `<div class="sec-lbl">Боевой арт (Three Houses)</div>
-      <select data-k="art" class="full" aria-label="Боевой арт"><option value="">— без арта —</option>${Object.keys(FE_WTYPES).filter((t) => FE_ARTS.some((a) => a.type === t && !a.info)).map((t) => `<optgroup label="${FE_WTYPES[t]}">${FE_ARTS.filter((a) => a.type === t && !a.info).map((a) => `<option value="${a.id}" ${u.art === a.id ? 'selected' : ''}>${esc(a.name)}${a.mt ? ' · Mt+' + a.mt : ''}${a.hit ? ' · Hit' + (a.hit > 0 ? '+' : '') + a.hit : ''}</option>`).join('')}</optgroup>`).join('')}</select>` : ''}
-      <div class="sec-lbl">Навыки</div>
-      <div class="chips skill-chips">${simSkills().map((s) => `<button type="button" class="chip ${u.skills.includes(s.id) ? 'on' : ''}" data-skill="${s.id}" title="${esc(s.desc + ' ' + (s.formula || ''))}">${esc(s.name)}</button>`).join('')}</div>
-      <details><summary>Доп. бонусы (поддержки, ранги, батальоны)</summary>
-        <div class="wpn-in" style="margin-top:8px">${['hit', 'avo', 'crit', 'dmg'].map((k) => `<label>${{ hit: 'Hit', avo: 'Avo', crit: 'Crit', dmg: 'Урон' }[k]}<input type="number" data-k="b.${k}" value="${u.bonus[k]}"></label>`).join('')}</div>
-      </details>
+      ${sub(side, 'wpn', 'Настроить оружие', `Mt ${u.weapon.mt} · Hit ${u.weapon.hit} · Crit ${u.weapon.crit}${R.usesWeight ? ' · Wt ' + (u.weapon.wt || 0) : ''}`, `
+        <div class="wpn-in">
+          ${['mt', 'hit', 'crit', 'wt'].map((k) => `<label style="${k === 'wt' && !R.usesWeight ? 'opacity:.45' : ''}">${{ mt: 'Mt', hit: 'Hit', crit: 'Crit', wt: 'Wt' }[k]}<input type="number" inputmode="numeric" data-k="w.${k}" value="${u.weapon[k] || 0}"></label>`).join('')}
+        </div>
+        <div class="panel-row" style="margin-top:8px">
+          <label class="field">Тип<select data-k="w.type">${Object.entries(FE_WTYPES).map(([k, v]) => `<option value="${k}" ${u.weapon.type === k ? 'selected' : ''}>${v}</option>`).join('')}</select></label>
+          <label class="field">Effective vs<select data-k="w.eff"><option value="">—</option>${Object.entries(FE_MOVE).filter(([k]) => k !== 'infantry').map(([k, v]) => `<option value="${k}" ${u.weapon.eff[0] === k ? 'selected' : ''}>${v}</option>`).join('')}</select></label>
+        </div>
+        <div class="row" style="margin-top:8px;font-size:13px;gap:14px">
+          <label><input type="checkbox" data-k="w.magic" ${u.weapon.magic ? 'checked' : ''}> Магия</label>
+          <label><input type="checkbox" data-k="w.brave" ${u.weapon.brave ? 'checked' : ''}> Brave</label>
+        </div>`)}
+      <div class="panel-row" style="margin-top:10px">
+        <label class="field">Снаряжение<select data-k="equip" aria-label="Снаряжение"><option value="">—</option>${['shield', 'ring'].map((c) => `<optgroup label="${c === 'shield' ? 'Shields' : 'Rings'}">${eqItems().filter((i) => i.cat === c).map((i) => `<option value="${i.id}" ${u.equip === i.id ? 'selected' : ''}>${esc(i.name)} (${esc(i.stats)})</option>`).join('')}</optgroup>`).join('')}</select></label>
+        ${!enemy ? `<label class="field">Combat Art (3H)<select data-k="art" aria-label="Боевой арт"><option value="">—</option>${Object.keys(FE_WTYPES).filter((t) => FE_ARTS.some((a) => a.type === t && !a.info)).map((t) => `<optgroup label="${FE_WTYPES[t]}">${FE_ARTS.filter((a) => a.type === t && !a.info).map((a) => `<option value="${a.id}" ${u.art === a.id ? 'selected' : ''}>${esc(a.name)}${a.mt ? ' · Mt+' + a.mt : ''}</option>`).join('')}</optgroup>`).join('')}</select></label>` : '<span></span>'}
+      </div>
+      ${sub(side, 'skills', 'Skills', u.skills.map((id) => (FE_SKILLS_BY_ID[id] || {}).name).filter(Boolean).join(', ') || 'нет', `
+        <div class="chips skill-chips">${simSkills().map((s) => `<button type="button" class="chip ${u.skills.includes(s.id) ? 'on' : ''}" data-skill="${s.id}" title="${esc(s.ru + ': ' + s.desc + ' ' + (s.formula || ''))}">${esc(s.name)}</button>`).join('')}</div>`)}
+      ${sub(side, 'bonus', 'Бонусы', ['hit', 'avo', 'crit', 'dmg'].filter((k) => +u.bonus[k]).map((k) => k + ' +' + u.bonus[k]).join(', ') || 'поддержки, ранги', `
+        <div class="wpn-in">${['hit', 'avo', 'crit', 'dmg'].map((k) => `<label>${{ hit: 'Hit', avo: 'Avo', crit: 'Crit', dmg: 'Dmg' }[k]}<input type="number" data-k="b.${k}" value="${u.bonus[k]}"></label>`).join('')}</div>`)}
     </div>`;
   }
 
   ROUTES.sim = () => {
-    app.innerHTML = `<div class="page-head"><div class="eyebrow">Лаборатория</div><h1>Симулятор боя</h1><p>Выберите правила игры, героев или задайте статы вручную. Прогноз считается по формулам выбранной игры, вероятности — по 4000 смоделированных боёв.</p></div>
+    app.innerHTML = `<div class="page-head"><div class="eyebrow">Лаборатория</div><h1>Симулятор боя</h1><p>Выберите правила игры и героев или задайте статы вручную. Прогноз — по формулам игры, вероятности — по 4000 боёв.</p></div>
       <div class="card sim-top">
         <label class="field">Правила игры<select id="simRules">${Object.values(FE.RULES).map((r) => `<option value="${r.id}" ${SIM.rules === r.id ? 'selected' : ''}>${r.name}</option>`).join('')}</select></label>
         <label class="field">Система RN<select id="simRn"><option value="">как в игре</option><option value="1rn" ${SIM.rn === '1rn' ? 'selected' : ''}>1RN (честная)</option><option value="2rn" ${SIM.rn === '2rn' ? 'selected' : ''}>2RN (усреднённая)</option><option value="hybrid" ${SIM.rn === 'hybrid' ? 'selected' : ''}>Гибрид (Fates)</option></select></label>
-        <label class="field" title="Пусто — значение по умолчанию для игры">Треуг.: Hit<input type="number" id="simTH" value="${SIM.triHit}" placeholder="авто" style="width:80px;min-width:0"></label>
-        <label class="field" title="Пусто — значение по умолчанию для игры">Треуг.: урон<input type="number" id="simTD" value="${SIM.triDmg}" placeholder="авто" style="width:80px;min-width:0"></label>
         <button class="btn" id="simSwap">⇄ Поменять местами</button>
+        <details><summary>Weapon Triangle: свои значения</summary><div class="tri-opts">
+        <label class="field" title="Пусто — значение по умолчанию для игры">Hit<input type="number" id="simTH" value="${SIM.triHit}" placeholder="авто" style="width:80px;min-width:0"></label>
+        <label class="field" title="Пусто — значение по умолчанию для игры">Dmg<input type="number" id="simTD" value="${SIM.triDmg}" placeholder="авто" style="width:80px;min-width:0"></label></div></details>
       </div>
       <div class="sim-grid">
         <div id="panelA">${unitPanel('a')}</div>
@@ -397,6 +400,8 @@
         const id = chip.dataset.skill;
         u.skills = u.skills.includes(id) ? u.skills.filter((x) => x !== id) : u.skills.concat(id);
         chip.classList.toggle('on');
+        const sel = panel.querySelector('[data-sub$="-skills"] .sel');
+        if (sel) sel.textContent = u.skills.map((x) => (FE_SKILLS_BY_ID[x] || {}).name).filter(Boolean).join(', ') || 'нет';
         return update();
       }
       const k = e.target.dataset.k; if (!k || e.type === 'click') return;
@@ -425,6 +430,7 @@
     grid.addEventListener('input', onField);
     grid.addEventListener('change', onField);
     grid.addEventListener('click', onField);
+    grid.addEventListener('toggle', (e) => { const k = e.target.dataset && e.target.dataset.sub; if (k) (e.target.open ? OPEN.add(k) : OPEN.delete(k)); }, true);
     update(true);
   };
 
@@ -459,7 +465,7 @@
       <div class="fc-head"><div class="nm a">${esc(A.name)}</div><div class="vs">VS</div><div class="nm d">${esc(D.name)}</div></div>
       <table class="fc-tbl">
         ${row('HP', `${A.curHp}/${A.hp}`, `${D.curHp}/${D.hp}`)}
-        ${row('Урон', `${f.a.dmg}${triIcon(f.a.tri)}${f.a.effective ? ' <span class="tag gold">эфф.</span>' : ''}`, `${dc ? f.d.dmg : '—'}${dc ? triIcon(f.d.tri) : ''}${f.d.effective && dc ? ' <span class="tag gold">эфф.</span>' : ''}`)}
+        ${row('Dmg', `${f.a.dmg}${triIcon(f.a.tri)}${f.a.effective ? ' <span class="tag gold">эфф.</span>' : ''}`, `${dc ? f.d.dmg : '—'}${dc ? triIcon(f.d.tri) : ''}${f.d.effective && dc ? ' <span class="tag gold">эфф.</span>' : ''}`)}
         ${row('Hit', f.a.hit, dc ? f.d.hit : '—')}
         ${row('True Hit', pct(f.a.trueHit), dc ? pct(f.d.trueHit) : '—')}
         ${row('Crit', f.a.crit, dc ? f.d.crit : '—')}
@@ -492,7 +498,7 @@
         <div class="prob row" style="justify-content:space-between;font-size:13px"><span>Ср. урон по защитнику: <b>${mc.avgDmgD.toFixed(1)}</b></span><span>по атакующему: <b>${mc.avgDmgA.toFixed(1)}</b></span></div>
         <div style="font-size:12px;padding:0 14px 6px" class="muted">Оставшееся HP защитника:</div>
         <div class="dist">${bars}</div><div class="dist-lbl"><span>0 HP</span><span>${D.curHp} HP</span></div>`;
-      if (dock) dock.innerHTML = `<span>Урон <span class="v a">${f.a.dmg}${f.a.strikes > 1 ? '×' + f.a.strikes : ''}</span></span><span>Hit <span class="v">${Math.round(f.a.trueHit)}%</span></span><span>Убийство <span class="v a">${pct(mc.pKillD * 100)}</span></span><span>Риск <span class="v d">${pct(mc.pKillA * 100)}</span></span>`;
+      if (dock) dock.innerHTML = `<span>Dmg <span class="v a">${f.a.dmg}${f.a.strikes > 1 ? '×' + f.a.strikes : ''}</span></span><span>Hit <span class="v">${Math.round(f.a.trueHit)}%</span></span><span>Убийство <span class="v a">${pct(mc.pKillD * 100)}</span></span><span>Риск <span class="v d">${pct(mc.pKillA * 100)}</span></span>`;
     }, 120);
   }
 
